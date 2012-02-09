@@ -1,0 +1,29 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual C++ Express 2010
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "leveldb", "leveldb.vcxproj", "{7E942AE4-2831-49E1-830B-EE0FD3970C4A}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "db_test", "db_test.vcxproj", "{B265849D-A823-4D47-B4FB-1F8884FBE08A}"
+	ProjectSection(ProjectDependencies) = postProject
+		{7E942AE4-2831-49E1-830B-EE0FD3970C4A} = {7E942AE4-2831-49E1-830B-EE0FD3970C4A}
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7E942AE4-2831-49E1-830B-EE0FD3970C4A}.Debug|Win32.ActiveCfg = Debug|Win32
+		{7E942AE4-2831-49E1-830B-EE0FD3970C4A}.Debug|Win32.Build.0 = Debug|Win32
+		{7E942AE4-2831-49E1-830B-EE0FD3970C4A}.Release|Win32.ActiveCfg = Release|Win32
+		{7E942AE4-2831-49E1-830B-EE0FD3970C4A}.Release|Win32.Build.0 = Release|Win32
+		{B265849D-A823-4D47-B4FB-1F8884FBE08A}.Debug|Win32.ActiveCfg = Debug|Win32
+		{B265849D-A823-4D47-B4FB-1F8884FBE08A}.Debug|Win32.Build.0 = Debug|Win32
+		{B265849D-A823-4D47-B4FB-1F8884FBE08A}.Release|Win32.ActiveCfg = Release|Win32
+		{B265849D-A823-4D47-B4FB-1F8884FBE08A}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
