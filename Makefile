@@ -2,7 +2,7 @@
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE file. See the AUTHORS file for names of contributors.
 
-CC = g++
+: ${CC:=g++}
 
 #-----------------------------------------------
 # Uncomment exactly one of the lines labelled (A), (B), and (C) below
@@ -36,9 +36,9 @@ else
 GOOGLE_PERFTOOLS_LDFLAGS=
 endif
 
-CFLAGS = -c -I. -I./include $(PORT_CFLAGS) $(PLATFORM_CFLAGS) $(OPT) $(SNAPPY_CFLAGS)
+CFLAGS = -c -I. -I./include $(PORT_CFLAGS) $(PLATFORM_CFLAGS) $(OPT) $(SNAPPY_CFLAGS) $(EXTRA_CFLAGS)
 
-LDFLAGS=$(PLATFORM_LDFLAGS) $(SNAPPY_LDFLAGS) $(GOOGLE_PERFTOOLS_LDFLAGS)
+LDFLAGS=$(PLATFORM_LDFLAGS) $(SNAPPY_LDFLAGS) $(GOOGLE_PERFTOOLS_LDFLAGS) $(EXTRA_LDFLAGS)
 
 LIBOBJECTS = \
 	./db/builder.o \

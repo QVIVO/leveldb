@@ -49,7 +49,7 @@ PORT_CFLAGS="-fno-builtin-memcmp"
 # or port_posix.h by:
 # 1. Rrying to compile with -std=c++0x and including <cstdatomic>.
 # 2. If g++ returns error code, we know to use port_posix.h
-g++ $CFLAGS -std=c++0x -x c++ - -o /dev/null 2>/dev/null  <<EOF
+$CC $CFLAGS -std=c++0x -x c++ - -o /dev/null 2>/dev/null  <<EOF
   #include <cstdatomic>
   int main() {}
 EOF
@@ -61,7 +61,7 @@ fi
 
 # Test whether Snappy library is installed
 # http://code.google.com/p/snappy/
-g++ $CFLAGS -x c++ - -o /dev/null 2>/dev/null  <<EOF
+$CC $CFLAGS -x c++ - -o /dev/null 2>/dev/null  <<EOF
   #include <snappy.h>
   int main() {}
 EOF
