@@ -2,18 +2,41 @@
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE file. See the AUTHORS file for names of contributors.
 
-CC = g++
+PROJ=leveldb
+
+ifeq ($(IOS), 1)
+	ARCH=armv7
+	DEVICE=OS
+	CC_FLAGS=-arch $(ARCH)
+	CFLAGS_FLAGS=-mcpu=cortex-a8 -marm
+else
+	ARCH=i386
+	DEVICE=Simulator
+	CC_FLAGS=-arch $(ARCH)
+endif
 
 # Uncomment one of the following to switch between debug and opt mode
 #OPT = -O2 -DNDEBUG
 OPT = -g2
 
-CFLAGS = -c -DLEVELDB_PLATFORM_POSIX -I. -I./include -std=c++0x $(OPT)
+SDK=6.0
+DEVROOT=`xcode-select -print-path`/Platforms/iPhone$(DEVICE).platform/Developer
+SDKROOT=${DEVROOT}/SDKs/iPhone$(DEVICE)$(SDK).sdk
 
-# For OS X
+CC=$(DEVROOT)/usr/bin/g++ $(CC_FLAGS)
+LD=$(CC)
+CFLAGS=-isysroot ${SDKROOT} -c -DLEVELDB_PLATFORM_OSX -I. -I./include $(CFLAGS_FLAGS) -fvisibility=hidden $(OPT)
+LDFLAGS=-isysroot ${SDKROOT}
+
+#LDFLAGS=-isysroot ${SDKROOT} -W1, -syslibroot ${SDKROOT}
+
+#### OSX #####
+
 #CFLAGS = -c -DLEVELDB_PLATFORM_OSX -I. -I./include $(OPT)
+#LDFLAGS=-lpthread
+#CC = g++
 
-LDFLAGS=-lpthread
+##############
 
 # Replace port_posix.o with port_osx.o below to build on
 # OS X.
@@ -32,7 +55,7 @@ LIBOBJECTS = \
 	./db/version_edit.o \
 	./db/version_set.o \
 	./db/write_batch.o \
-	./port/port_posix.o \
+	./port/port_osx.o \
 	./table/block.o \
 	./table/block_builder.o \
 	./table/format.o \
@@ -127,6 +150,13 @@ version_edit_test: db/version_edit_test.o $(LIBOBJECTS) $(TESTHARNESS)
 
 write_batch_test: db/write_batch_test.o $(LIBOBJECTS) $(TESTHARNESS)
 	$(CC) $(LDFLAGS) db/write_batch_test.o $(LIBOBJECTS) $(TESTHARNESS) -o $@
+
+library: $(LIBOBJECTS) 
+	ar rcs $(ARCH)-lib$(PROJ).a $(LIBOBJECTS)
+
+lipo:
+	lipo -create -arch armv7 armv7-lib$(PROJ).a -arch i386 i386-lib$(PROJ).a -output lib$(PROJ).a
+
 
 .cc.o:
 	$(CC) $(CFLAGS) $< -o $@

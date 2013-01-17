@@ -64,7 +64,7 @@ class CondVar {
 
 class AtomicPointer {
  private:
-  typedef base::subtle::AtomicWord Rep;
+  typedef base::subtle::Atomic32 Rep;
   Rep rep_;
  public:
   AtomicPointer() { }
