@@ -10,9 +10,16 @@ ifeq ($(IOS), 1)
 	CC_FLAGS=-arch $(ARCH)
 	CFLAGS_FLAGS=-mcpu=cortex-a8 -marm
 else
+ifeq ($(IOS), 2)
+	ARCH=armv7s
+	DEVICE=OS
+	CC_FLAGS=-arch $(ARCH)
+	CFLAGS_FLAGS=-mcpu=cortex-a8 -marm
+else
 	ARCH=i386
 	DEVICE=Simulator
 	CC_FLAGS=-arch $(ARCH)
+endif
 endif
 
 # Uncomment one of the following to switch between debug and opt mode
@@ -155,7 +162,7 @@ library: $(LIBOBJECTS)
 	ar rcs $(ARCH)-lib$(PROJ).a $(LIBOBJECTS)
 
 lipo:
-	lipo -create -arch armv7 armv7-lib$(PROJ).a -arch i386 i386-lib$(PROJ).a -output lib$(PROJ).a
+	lipo -create -arch armv7 armv7-lib$(PROJ).a -arch i386 i386-lib$(PROJ).a -arch armv7 armv7s-lib$(PROJ).a -output lib$(PROJ).a
 
 
 .cc.o:
