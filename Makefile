@@ -26,7 +26,7 @@ endif
 #OPT = -O2 -DNDEBUG
 OPT = -g2
 
-SDK=6.0
+SDK=6.1
 DEVROOT=`xcode-select -print-path`/Platforms/iPhone$(DEVICE).platform/Developer
 SDKROOT=${DEVROOT}/SDKs/iPhone$(DEVICE)$(SDK).sdk
 
