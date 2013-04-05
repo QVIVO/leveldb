@@ -1,0 +1,307 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ImportGroup Label="PropertySheets" />
+  <PropertyGroup Label="UserMacros">
+    <MAIN_DIR>$(SolutionDir)..\..\</MAIN_DIR>
+    <TARGET_ROOT>$(QVIVO_OUTPUT)vc-out\$(Configuration)\</TARGET_ROOT>
+    <STAGING_DIR>$(QVIVO_OUTPUT)bin\$(Configuration)\</STAGING_DIR>
+    <OBJECT_DIR>$(TARGET_ROOT)obj\$(ProjectName)\</OBJECT_DIR>
+    <LIBRARY_DIR>$(TARGET_ROOT)lib\</LIBRARY_DIR>
+    <BINARY_DIR>$(TARGET_ROOT)bin\$(ProjectName)\</BINARY_DIR>
+    <BOOST_VERSION>1_53</BOOST_VERSION>
+    <BOOST_HOME>$(QVIVO_SDK)3rdparty\boost-$(BOOST_VERSION)\</BOOST_HOME>
+    <BOOST_CPPPATH>$(BOOST_HOME)</BOOST_CPPPATH>
+    <BOOST_LIBPATH>$(BOOST_HOME)lib\</BOOST_LIBPATH>
+    <BOOST_LIBS_Debug>libboost_filesystem-vc100-mt-gd-$(BOOST_VERSION).lib;libboost_thread-vc100-mt-gd-$(BOOST_VERSION).lib;libboost_system-vc100-mt-gd-$(BOOST_VERSION).lib;libboost_regex-vc100-mt-gd-$(BOOST_VERSION).lib</BOOST_LIBS_Debug>
+    <BOOST_LIBS_Release>libboost_system-vc100-mt-$(BOOST_VERSION).lib;libboost_filesystem-vc100-mt-$(BOOST_VERSION).lib;libboost_thread-vc100-mt-$(BOOST_VERSION).lib;libboost_regex-vc100-mt-$(BOOST_VERSION).lib</BOOST_LIBS_Release>
+    <BOTAN_HOME>$(QVIVO_SDK)3rdparty\Botan\</BOTAN_HOME>
+    <BOTAN_CPPPATH>$(BOTAN_HOME)include\</BOTAN_CPPPATH>
+    <BOTAN_LIBPATH>$(BOTAN_HOME)lib\$(Configuration)\</BOTAN_LIBPATH>
+    <JSONC_HOME>$(QVIVO_SDK)3rdparty\json-c-0.10\</JSONC_HOME>
+    <JSONC_CPPPATH>$(JSONC_HOME)include\</JSONC_CPPPATH>
+    <JSONC_LIBPATH>$(JSONC_HOME)lib\$(Configuration)\</JSONC_LIBPATH>
+    <EXPAT_HOME>$(QVIVO_SDK)3rdparty\expat-2.0.1\</EXPAT_HOME>
+    <EXPAT_CPPPATH>$(EXPAT_HOME)include\</EXPAT_CPPPATH>
+    <EXPAT_LIBPATH>$(EXPAT_HOME)lib\$(Configuration)\</EXPAT_LIBPATH>
+    <GTEST_HOME>$(QVIVO_SDK)3rdparty\gtest\</GTEST_HOME>
+    <GTEST_CPPPATH>$(GTEST_HOME)include\</GTEST_CPPPATH>
+    <GTEST_LIBPATH>$(GTEST_HOME)lib\$(Configuration)\</GTEST_LIBPATH>
+    <GTEST_LIBS>gtestd.lib</GTEST_LIBS>
+    <MONGOOSE_HOME>$(QVIVO_SDK)3rdparty\mongoose-2.11\</MONGOOSE_HOME>
+    <MONGOOSE_CPPPATH>$(MONGOOSE_HOME)include\</MONGOOSE_CPPPATH>
+    <MONGOOSE_LIBPATH>$(MONGOOSE_HOME)lib\$(Configuration)\</MONGOOSE_LIBPATH>
+    <LIBCURL_HOME>$(QVIVO_SDK)3rdparty\libcurl-7.21.6\</LIBCURL_HOME>
+    <LIBCURL_CPPPATH>$(LIBCURL_HOME)include\</LIBCURL_CPPPATH>
+    <LIBCURL_LIBPATH>$(LIBCURL_HOME)lib\</LIBCURL_LIBPATH>
+    <LIBCURL_LIBS>libcurl.lib</LIBCURL_LIBS>
+    <CURLPP_HOME>$(QVIVO_SDK)3rdparty\curlpp\</CURLPP_HOME>
+    <CURLPP_CPPPATH>$(CURLPP_HOME)include\;$(CURLPP_HOME)openssl\32\include\</CURLPP_CPPPATH>
+    <CURLPP_LIBPATH>$(CURLPP_HOME)lib\;$(CURLPP_HOME)openssl\32\lib\;$(CURLPP_HOME)</CURLPP_LIBPATH>
+    <CURLPP_LIBS>curlppd.lib;ssleay32.lib;libeay32.lib</CURLPP_LIBS>
+    <FFMPEG_VERSION>1.2-release</FFMPEG_VERSION>
+    <FFMPEG_HOME>$(QVIVO_SDK)3rdparty\ffmpeg-$(FFMPEG_VERSION)\</FFMPEG_HOME>
+    <FFMPEG_CPPPATH>$(FFMPEG_HOME)include\</FFMPEG_CPPPATH>
+    <FFMPEG_LIBPATH>$(FFMPEG_HOME)lib\</FFMPEG_LIBPATH>
+    <SDL_HOME>$(QVIVO_SDK)3rdparty\SDL-1.2.15\</SDL_HOME>
+    <SDL_CPPPATH>$(SDL_HOME)include\</SDL_CPPPATH>
+    <SDL_LIBPATH>$(SDL_HOME)\lib\x86\</SDL_LIBPATH>
+    <OPENAL_HOME>$(QVIVO_SDK)3rdparty\openal-soft-1.14\</OPENAL_HOME>
+    <OPENAL_CPPPATH>$(OPENAL_HOME)include\</OPENAL_CPPPATH>
+    <LEVELDB_HOME>$(QVIVO_SDK)3rdparty\leveldb\</LEVELDB_HOME>
+    <LEVELDB_CPPPATH>$(LEVELDB_HOME)include\</LEVELDB_CPPPATH>
+    <LEVELDB_LIBPATH>$(LEVELDB_HOME)lib\$(Configuration)\</LEVELDB_LIBPATH>
+    <TAGLIB_HOME>$(QVIVO_SDK)3rdparty\taglib-1.7\</TAGLIB_HOME>
+    <TAGLIB_CPPPATH>$(TAGLIB_HOME)include\</TAGLIB_CPPPATH>
+    <TAGLIB_LIBPATH>$(TAGLIB_HOME)lib\$(Configuration)\</TAGLIB_LIBPATH>
+    <QCORE_DEP_LIBPATHS>$(QVIVO_SDK)lib\$(Configuration)\;$(BOOST_LIBPATH);$(JSONC_LIBPATH);$(BOTAN_LIBPATH);$(EXPAT_LIBPATH);</QCORE_DEP_LIBPATHS>
+    <QCORE_DEP_LIBS>QCore.lib;json-c.lib;botan.lib;expat.lib;mpr.lib;</QCORE_DEP_LIBS>
+    <QNETWORK_DEP_LIBPATHS>$(QVIVO_SDK)lib\$(Configuration);$(LIBCURL_LIBPATH);$(CURLPP_LIBPATH);</QNETWORK_DEP_LIBPATHS>
+    <QNETWORK_DEP_LIBS>QNetwork.lib;$(LIBCURL_LIBS);$(CURLPP_LIBS);</QNETWORK_DEP_LIBS>
+    <QMP2_DEP_LIBPATHS>$(FFMPEG_LIBPATH);$(SDL_LIBPATH);</QMP2_DEP_LIBPATHS>
+    <QMP2_DEP_LIBS>QMediaPlayer2.lib;winmm.lib;SDL.lib;opengl32.lib;avcodec.lib;avformat.lib;avutil.lib;swresample.lib;swscale.lib;avfilter.lib</QMP2_DEP_LIBS>
+    <WINSPARKLE_HOME>$(QVIVO_SDK)3rdparty\WinSparkle\</WINSPARKLE_HOME>
+    <WINSPARKLE_CPPPATH>$(WINSPARKLE_HOME)include\</WINSPARKLE_CPPPATH>
+    <WINSPARKLE_LIBPATH>$(WINSPARKLE_HOME)lib\$(Configuration)\</WINSPARKLE_LIBPATH>
+    <DXSDK_CPPPATH>$(DXSDK_DIR)Include\</DXSDK_CPPPATH>
+    <DXSDK_LIBPATH>$(DXSDK_DIR)Lib\x86\</DXSDK_LIBPATH>
+    <QAPPS_CPPPATH>$(SolutionDir)..\..\src\</QAPPS_CPPPATH>
+    <ICULIB_HOME>$(QVIVO_SDK)3rdparty\icu51\</ICULIB_HOME>
+    <ICULIB_CPPPATH>$(ICULIB_HOME)include\</ICULIB_CPPPATH>
+    <ICULIB_LIBPATH>$(ICULIB_HOME)lib\</ICULIB_LIBPATH>
+    <AWESOMIUM_HOME>$(QVIVO_SDK)3rdparty\Awesomium_1_7_0_5\</AWESOMIUM_HOME>
+    <AWESOMIUM_CPPPATH>$(AWESOMIUM_HOME)include\</AWESOMIUM_CPPPATH>
+    <AWESOMIUM_LIBPATH>$(AWESOMIUM_HOME)build\lib\</AWESOMIUM_LIBPATH>
+    <AWESOMIUM_BINPATH>$(AWESOMIUM_HOME)build\bin\</AWESOMIUM_BINPATH>
+    <QCORE_DEP_CPPPATH>$(QVIVO_SDK)include;$(BOOST_CPPPATH);$(JSONC_CPPPATH);</QCORE_DEP_CPPPATH>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OutDir>
+    </OutDir>
+    <IntDir>$(OBJECT_DIR)</IntDir>
+    <IncludePath>$(IncludePath)</IncludePath>
+    <_PropertySheetDisplayName>QVIVO_3</_PropertySheetDisplayName>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <PreprocessorDefinitions>WIN32_LEAN_AND_MEAN;NOMINMAX;BOOST_NO_RVALUE_REFERENCES;BOOST_THREAD_USE_LIB;BOOST_ALL_NO_LIB;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>
+      </AdditionalIncludeDirectories>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <BuildMacro Include="MAIN_DIR">
+      <Value>$(MAIN_DIR)</Value>
+    </BuildMacro>
+    <BuildMacro Include="TARGET_ROOT">
+      <Value>$(TARGET_ROOT)</Value>
+    </BuildMacro>
+    <BuildMacro Include="STAGING_DIR">
+      <Value>$(STAGING_DIR)</Value>
+    </BuildMacro>
+    <BuildMacro Include="OBJECT_DIR">
+      <Value>$(OBJECT_DIR)</Value>
+    </BuildMacro>
+    <BuildMacro Include="LIBRARY_DIR">
+      <Value>$(LIBRARY_DIR)</Value>
+    </BuildMacro>
+    <BuildMacro Include="BINARY_DIR">
+      <Value>$(BINARY_DIR)</Value>
+    </BuildMacro>
+    <BuildMacro Include="BOOST_VERSION">
+      <Value>$(BOOST_VERSION)</Value>
+    </BuildMacro>
+    <BuildMacro Include="BOOST_HOME">
+      <Value>$(BOOST_HOME)</Value>
+    </BuildMacro>
+    <BuildMacro Include="BOOST_CPPPATH">
+      <Value>$(BOOST_CPPPATH)</Value>
+    </BuildMacro>
+    <BuildMacro Include="BOOST_LIBPATH">
+      <Value>$(BOOST_LIBPATH)</Value>
+    </BuildMacro>
+    <BuildMacro Include="BOOST_LIBS_Debug">
+      <Value>$(BOOST_LIBS_Debug)</Value>
+    </BuildMacro>
+    <BuildMacro Include="BOOST_LIBS_Release">
+      <Value>$(BOOST_LIBS_Release)</Value>
+    </BuildMacro>
+    <BuildMacro Include="BOTAN_HOME">
+      <Value>$(BOTAN_HOME)</Value>
+    </BuildMacro>
+    <BuildMacro Include="BOTAN_CPPPATH">
+      <Value>$(BOTAN_CPPPATH)</Value>
+    </BuildMacro>
+    <BuildMacro Include="BOTAN_LIBPATH">
+      <Value>$(BOTAN_LIBPATH)</Value>
+    </BuildMacro>
+    <BuildMacro Include="JSONC_HOME">
+      <Value>$(JSONC_HOME)</Value>
+    </BuildMacro>
+    <BuildMacro Include="JSONC_CPPPATH">
+      <Value>$(JSONC_CPPPATH)</Value>
+    </BuildMacro>
+    <BuildMacro Include="JSONC_LIBPATH">
+      <Value>$(JSONC_LIBPATH)</Value>
+    </BuildMacro>
+    <BuildMacro Include="EXPAT_HOME">
+      <Value>$(EXPAT_HOME)</Value>
+    </BuildMacro>
+    <BuildMacro Include="EXPAT_CPPPATH">
+      <Value>$(EXPAT_CPPPATH)</Value>
+    </BuildMacro>
+    <BuildMacro Include="EXPAT_LIBPATH">
+      <Value>$(EXPAT_LIBPATH)</Value>
+    </BuildMacro>
+    <BuildMacro Include="GTEST_HOME">
+      <Value>$(GTEST_HOME)</Value>
+    </BuildMacro>
+    <BuildMacro Include="GTEST_CPPPATH">
+      <Value>$(GTEST_CPPPATH)</Value>
+    </BuildMacro>
+    <BuildMacro Include="GTEST_LIBPATH">
+      <Value>$(GTEST_LIBPATH)</Value>
+    </BuildMacro>
+    <BuildMacro Include="GTEST_LIBS">
+      <Value>$(GTEST_LIBS)</Value>
+    </BuildMacro>
+    <BuildMacro Include="MONGOOSE_HOME">
+      <Value>$(MONGOOSE_HOME)</Value>
+    </BuildMacro>
+    <BuildMacro Include="MONGOOSE_CPPPATH">
+      <Value>$(MONGOOSE_CPPPATH)</Value>
+    </BuildMacro>
+    <BuildMacro Include="MONGOOSE_LIBPATH">
+      <Value>$(MONGOOSE_LIBPATH)</Value>
+    </BuildMacro>
+    <BuildMacro Include="LIBCURL_HOME">
+      <Value>$(LIBCURL_HOME)</Value>
+    </BuildMacro>
+    <BuildMacro Include="LIBCURL_CPPPATH">
+      <Value>$(LIBCURL_CPPPATH)</Value>
+    </BuildMacro>
+    <BuildMacro Include="LIBCURL_LIBPATH">
+      <Value>$(LIBCURL_LIBPATH)</Value>
+    </BuildMacro>
+    <BuildMacro Include="LIBCURL_LIBS">
+      <Value>$(LIBCURL_LIBS)</Value>
+    </BuildMacro>
+    <BuildMacro Include="CURLPP_HOME">
+      <Value>$(CURLPP_HOME)</Value>
+    </BuildMacro>
+    <BuildMacro Include="CURLPP_CPPPATH">
+      <Value>$(CURLPP_CPPPATH)</Value>
+    </BuildMacro>
+    <BuildMacro Include="CURLPP_LIBPATH">
+      <Value>$(CURLPP_LIBPATH)</Value>
+    </BuildMacro>
+    <BuildMacro Include="CURLPP_LIBS">
+      <Value>$(CURLPP_LIBS)</Value>
+    </BuildMacro>
+    <BuildMacro Include="FFMPEG_VERSION">
+      <Value>$(FFMPEG_VERSION)</Value>
+    </BuildMacro>
+    <BuildMacro Include="FFMPEG_HOME">
+      <Value>$(FFMPEG_HOME)</Value>
+    </BuildMacro>
+    <BuildMacro Include="FFMPEG_CPPPATH">
+      <Value>$(FFMPEG_CPPPATH)</Value>
+    </BuildMacro>
+    <BuildMacro Include="FFMPEG_LIBPATH">
+      <Value>$(FFMPEG_LIBPATH)</Value>
+    </BuildMacro>
+    <BuildMacro Include="SDL_HOME">
+      <Value>$(SDL_HOME)</Value>
+    </BuildMacro>
+    <BuildMacro Include="SDL_CPPPATH">
+      <Value>$(SDL_CPPPATH)</Value>
+    </BuildMacro>
+    <BuildMacro Include="SDL_LIBPATH">
+      <Value>$(SDL_LIBPATH)</Value>
+    </BuildMacro>
+    <BuildMacro Include="OPENAL_HOME">
+      <Value>$(OPENAL_HOME)</Value>
+    </BuildMacro>
+    <BuildMacro Include="OPENAL_CPPPATH">
+      <Value>$(OPENAL_CPPPATH)</Value>
+    </BuildMacro>
+    <BuildMacro Include="LEVELDB_HOME">
+      <Value>$(LEVELDB_HOME)</Value>
+    </BuildMacro>
+    <BuildMacro Include="LEVELDB_CPPPATH">
+      <Value>$(LEVELDB_CPPPATH)</Value>
+    </BuildMacro>
+    <BuildMacro Include="LEVELDB_LIBPATH">
+      <Value>$(LEVELDB_LIBPATH)</Value>
+    </BuildMacro>
+    <BuildMacro Include="TAGLIB_HOME">
+      <Value>$(TAGLIB_HOME)</Value>
+    </BuildMacro>
+    <BuildMacro Include="TAGLIB_CPPPATH">
+      <Value>$(TAGLIB_CPPPATH)</Value>
+    </BuildMacro>
+    <BuildMacro Include="TAGLIB_LIBPATH">
+      <Value>$(TAGLIB_LIBPATH)</Value>
+    </BuildMacro>
+    <BuildMacro Include="QCORE_DEP_LIBPATHS">
+      <Value>$(QCORE_DEP_LIBPATHS)</Value>
+    </BuildMacro>
+    <BuildMacro Include="QCORE_DEP_LIBS">
+      <Value>$(QCORE_DEP_LIBS)</Value>
+    </BuildMacro>
+    <BuildMacro Include="QNETWORK_DEP_LIBPATHS">
+      <Value>$(QNETWORK_DEP_LIBPATHS)</Value>
+    </BuildMacro>
+    <BuildMacro Include="QNETWORK_DEP_LIBS">
+      <Value>$(QNETWORK_DEP_LIBS)</Value>
+    </BuildMacro>
+    <BuildMacro Include="QMP2_DEP_LIBPATHS">
+      <Value>$(QMP2_DEP_LIBPATHS)</Value>
+    </BuildMacro>
+    <BuildMacro Include="QMP2_DEP_LIBS">
+      <Value>$(QMP2_DEP_LIBS)</Value>
+    </BuildMacro>
+    <BuildMacro Include="WINSPARKLE_HOME">
+      <Value>$(WINSPARKLE_HOME)</Value>
+    </BuildMacro>
+    <BuildMacro Include="WINSPARKLE_CPPPATH">
+      <Value>$(WINSPARKLE_CPPPATH)</Value>
+    </BuildMacro>
+    <BuildMacro Include="WINSPARKLE_LIBPATH">
+      <Value>$(WINSPARKLE_LIBPATH)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DXSDK_CPPPATH">
+      <Value>$(DXSDK_CPPPATH)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DXSDK_LIBPATH">
+      <Value>$(DXSDK_LIBPATH)</Value>
+    </BuildMacro>
+    <BuildMacro Include="QAPPS_CPPPATH">
+      <Value>$(QAPPS_CPPPATH)</Value>
+    </BuildMacro>
+    <BuildMacro Include="ICULIB_HOME">
+      <Value>$(ICULIB_HOME)</Value>
+    </BuildMacro>
+    <BuildMacro Include="ICULIB_CPPPATH">
+      <Value>$(ICULIB_CPPPATH)</Value>
+    </BuildMacro>
+    <BuildMacro Include="ICULIB_LIBPATH">
+      <Value>$(ICULIB_LIBPATH)</Value>
+    </BuildMacro>
+    <BuildMacro Include="AWESOMIUM_HOME">
+      <Value>$(AWESOMIUM_HOME)</Value>
+    </BuildMacro>
+    <BuildMacro Include="AWESOMIUM_CPPPATH">
+      <Value>$(AWESOMIUM_CPPPATH)</Value>
+    </BuildMacro>
+    <BuildMacro Include="AWESOMIUM_LIBPATH">
+      <Value>$(AWESOMIUM_LIBPATH)</Value>
+    </BuildMacro>
+    <BuildMacro Include="AWESOMIUM_BINPATH">
+      <Value>$(AWESOMIUM_BINPATH)</Value>
+    </BuildMacro>
+    <BuildMacro Include="QCORE_DEP_CPPPATH">
+      <Value>$(QCORE_DEP_CPPPATH)</Value>
+    </BuildMacro>
+  </ItemGroup>
+</Project>
