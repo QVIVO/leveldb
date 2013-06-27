@@ -1,0 +1,3 @@
+*.user
+build/vc10/Debug/
+build/vc10/Release/

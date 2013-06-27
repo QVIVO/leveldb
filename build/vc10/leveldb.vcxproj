@@ -44,7 +44,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions); LEVELDB_PLATFORM_WINDOWS;OS_WIN</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions);LEVELDB_PLATFORM_WINDOWS;OS_WIN</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>..\..\;..\..\include;$(BOOST_CPPPATH);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
@@ -89,6 +89,7 @@
     <ClInclude Include="..\..\include\leveldb\comparator.h" />
     <ClInclude Include="..\..\include\leveldb\db.h" />
     <ClInclude Include="..\..\include\leveldb\env.h" />
+    <ClInclude Include="..\..\include\leveldb\filter_policy.h" />
     <ClInclude Include="..\..\include\leveldb\iterator.h" />
     <ClInclude Include="..\..\include\leveldb\options.h" />
     <ClInclude Include="..\..\include\leveldb\slice.h" />
@@ -99,9 +100,11 @@
     <ClInclude Include="..\..\port\atomic_pointer.h" />
     <ClInclude Include="..\..\port\port.h" />
     <ClInclude Include="..\..\port\port_win.h" />
+    <ClInclude Include="..\..\port\thread_annotations.h" />
     <ClInclude Include="..\..\port\win\stdint.h" />
     <ClInclude Include="..\..\table\block.h" />
     <ClInclude Include="..\..\table\block_builder.h" />
+    <ClInclude Include="..\..\table\filter_block.h" />
     <ClInclude Include="..\..\table\format.h" />
     <ClInclude Include="..\..\table\iterator_wrapper.h" />
     <ClInclude Include="..\..\table\merger.h" />
@@ -126,6 +129,7 @@
     <ClCompile Include="..\..\db\db_impl.cc" />
     <ClCompile Include="..\..\db\db_iter.cc" />
     <ClCompile Include="..\..\db\filename.cc" />
+    <ClCompile Include="..\..\db\leveldb_main.cc" />
     <ClCompile Include="..\..\db\log_reader.cc" />
     <ClCompile Include="..\..\db\log_writer.cc" />
     <ClCompile Include="..\..\db\memtable.cc" />
@@ -137,6 +141,7 @@
     <ClCompile Include="..\..\port\port_win.cc" />
     <ClCompile Include="..\..\table\block.cc" />
     <ClCompile Include="..\..\table\block_builder.cc" />
+    <ClCompile Include="..\..\table\filter_block.cc" />
     <ClCompile Include="..\..\table\format.cc" />
     <ClCompile Include="..\..\table\iterator.cc" />
     <ClCompile Include="..\..\table\merger.cc" />
@@ -144,12 +149,17 @@
     <ClCompile Include="..\..\table\table_builder.cc" />
     <ClCompile Include="..\..\table\two_level_iterator.cc" />
     <ClCompile Include="..\..\util\arena.cc" />
+    <ClCompile Include="..\..\util\bloom.cc" />
     <ClCompile Include="..\..\util\cache.cc" />
     <ClCompile Include="..\..\util\coding.cc" />
-    <ClCompile Include="..\..\util\comparator.cc" />
+    <ClCompile Include="..\..\util\comparator.cc">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="..\..\util\crc32c.cc" />
     <ClCompile Include="..\..\util\env.cc" />
     <ClCompile Include="..\..\util\env_boost.cc" />
+    <ClCompile Include="..\..\util\filter_policy.cc" />
     <ClCompile Include="..\..\util\hash.cc" />
     <ClCompile Include="..\..\util\histogram.cc" />
     <ClCompile Include="..\..\util\logging.cc" />
