@@ -39,6 +39,8 @@
 
 #include <stdint.h>
 
+#include <boost/thread/once.hpp>
+
 namespace leveldb {
 namespace port {
 
@@ -142,7 +144,11 @@ inline bool GetHeapProfile(void (*func)(void*, const char*, int), void* arg) {
   return false;
 }
 
-}
-}
+typedef boost::once_flag OnceType;
+#define LEVELDB_ONCE_INIT BOOST_ONCE_INIT
+extern void InitOnce(OnceType* once, void (*initializer)());
+
+} // namespace port
+} // namespace leveldb
 
 #endif  // STORAGE_LEVELDB_PORT_PORT_WIN_H_

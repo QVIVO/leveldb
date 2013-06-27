@@ -141,5 +141,9 @@ void AtomicPointer::NoBarrier_Store(void* v) {
   rep_ = v;
 }
 
+void InitOnce(OnceType* once, void (*initializer)()) {
+	boost::call_once(initializer, *once);
 }
-}
+
+} // namespace port
+} // namespace leveldb
