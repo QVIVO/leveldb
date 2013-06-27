@@ -9,6 +9,8 @@
 
 namespace leveldb {
 
+class MemTable;
+
 // WriteBatchInternal provides static methods for manipulating a
 // WriteBatch that we don't want in the public WriteBatch interface.
 class WriteBatchInternal {
@@ -37,9 +39,11 @@ class WriteBatchInternal {
   static void SetContents(WriteBatch* batch, const Slice& contents);
 
   static Status InsertInto(const WriteBatch* batch, MemTable* memtable);
+
+  static void Append(WriteBatch* dst, const WriteBatch* src);
 };
 
-}
+}  // namespace leveldb
 
 
 #endif  // STORAGE_LEVELDB_DB_WRITE_BATCH_INTERNAL_H_

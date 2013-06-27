@@ -2,9 +2,11 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file. See the AUTHORS file for names of contributors.
 
+#include <algorithm>
 #include <stdint.h>
 #include "leveldb/comparator.h"
 #include "leveldb/slice.h"
+#include "port/port.h"
 #include "util/logging.h"
 
 namespace leveldb {
@@ -62,11 +64,18 @@ class BytewiseComparatorImpl : public Comparator {
     // *key is a run of 0xffs.  Leave it alone.
   }
 };
+}  // namespace
+
+static port::OnceType once = LEVELDB_ONCE_INIT;
+static const Comparator* bytewise;
+
+static void InitModule() {
+  bytewise = new BytewiseComparatorImpl;
 }
-static const BytewiseComparatorImpl bytewise;
 
 const Comparator* BytewiseComparator() {
-  return &bytewise;
+  port::InitOnce(&once, InitModule);
+  return bytewise;
 }
 
-}
+}  // namespace leveldb

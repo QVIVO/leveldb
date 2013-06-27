@@ -70,7 +70,7 @@ TEST(FileNameTest, Parse) {
   for (int i = 0; i < sizeof(errors) / sizeof(errors[0]); i++) {
     std::string f = errors[i];
     ASSERT_TRUE(!ParseFileName(f, &number, &type)) << f;
-  };
+  }
 }
 
 TEST(FileNameTest, Construction) {
@@ -115,7 +115,7 @@ TEST(FileNameTest, Construction) {
   ASSERT_EQ(kTempFile, type);
 }
 
-}
+}  // namespace leveldb
 
 int main(int argc, char** argv) {
   return leveldb::test::RunAllTests();
