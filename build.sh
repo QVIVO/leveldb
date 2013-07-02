@@ -1,4 +1,5 @@
 #!/bin/sh
+make clean
 make PLATFORM=IOS
 
 cp -a include/leveldb $QVIVO_SDK/iphonesimulator/include/
